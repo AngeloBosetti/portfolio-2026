@@ -1,0 +1,167 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// --- TES DONNÉES (Change tes infos ici) ---
+
+const personalInfo = {
+  name: "ANGELO",
+  role: "VISUAL ENGINEER",
+  email: "angelo.bsti25@gmail.com",
+  linkedin: "https://www.linkedin.com/in/angelo-bosetti", 
+};
+
+const projects = [
+  {
+    id: "01",
+    title: "SERUM 3D",
+    category: "RENDU PRODUIT",
+    tech: "Blender • Cycles • Procedural",
+    description: "Création photoréaliste d'un packaging cosmétique avec texturing procédural avancé.",
+    // Pour l'instant, c'est une image grise. Remplace l'URL plus tard par : "/images/ton-image.jpg"
+    image: "https://placehold.co/800x600/1a1a1a/F16529?text=SERUM+3D" 
+  },
+  {
+    id: "02",
+    title: "OFFF FESTIVAL",
+    category: "BRAND IDENTITY",
+    tech: "Figma • Illustrator",
+    description: "Refonte complète de l'identité visuelle du festival : Logo, charte graphique et UI.",
+    image: "https://placehold.co/800x600/1a1a1a/FFF?text=OFFF+PROJECT"
+  },
+  {
+    id: "03",
+    title: "XBOX MODDING",
+    category: "HARDWARE ENGINEERING",
+    tech: "Fusion 360 • 3D Print",
+    description: "Intégration d'une carte mère PC dans un châssis Xbox. Modélisation CAO des pièces sur-mesure.",
+    image: "https://placehold.co/800x600/1a1a1a/F16529?text=XBOX+MOD"
+  },
+  {
+    id: "04",
+    title: "SUPERSEÑOR",
+    category: "WEB DEVELOPMENT",
+    tech: "WordPress • Vue.js",
+    description: "Design et développement d'un thème WordPress personnalisé pour une association.",
+    image: "https://placehold.co/800x600/1a1a1a/FFF?text=WEB+DESIGN"
+  }
+];
+
+const skills = [
+  "BLENDER 3D",
+  "FIGMA UI",
+  "FUSION 360",
+  "VUE.JS / HTML",
+  "HARDWARE"
+];
+---
+
+<Layout title="Angelo Bosetti | Visual Engineer">
+  
+  <header class="fixed top-0 w-full z-50 mix-blend-difference px-6 py-6 flex justify-between items-center">
+    <div class="font-heading font-bold text-2xl tracking-tighter">{personalInfo.name}</div>
+    <nav class="hidden md:flex gap-8 text-sm font-bold tracking-widest text-gray-300">
+      <a href="#work" class="hover:text-accent transition-colors">WORKS</a>
+      <a href="#about" class="hover:text-accent transition-colors">ABOUT</a>
+      <a href="#contact" class="hover:text-accent transition-colors">CONTACT</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="min-h-screen flex flex-col justify-center px-6 pt-20 relative overflow-hidden">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent/20 blur-[120px] rounded-full pointer-events-none"></div>
+      
+      <div class="z-10 relative">
+        <h2 class="text-accent font-bold tracking-widest mb-4">3D ARTIST & UI DESIGNER</h2>
+        <h1 class="text-6xl md:text-[9rem] leading-[0.9] font-bold uppercase mb-8">
+          VISUAL <br/>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">ENGINEERING</span>
+        </h1>
+        <p class="max-w-xl text-gray-400 text-lg md:text-xl font-light border-l-2 border-accent pl-6">
+          Je ne suis pas juste un designer. Je construis des systèmes. De la modification hardware (CAO) à l'interface pixel-perfect.
+        </p>
+      </div>
+
+      <div class="absolute bottom-10 left-6 animate-bounce text-gray-500">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+      </div>
+    </section>
+
+    <section id="work" class="px-6 py-24 bg-dark">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-y-24">
+        {projects.map((project) => (
+          <article class="group cursor-pointer">
+            <div class="overflow-hidden rounded-sm mb-6 aspect-[4/3] bg-card relative border border-gray-900 group-hover:border-accent/50 transition-colors">
+              <div class="absolute inset-0 bg-accent/0 group-hover:bg-accent/10 transition-colors z-10 duration-500"></div>
+              <img 
+                src={project.image} 
+                alt={project.title} 
+                class="w-full h-full object-cover grayscale group-hover:grayscale-0 scale-100 group-hover:scale-105 transition-all duration-700 ease-out"
+              />
+            </div>
+            
+            <div class="flex justify-between items-start border-t border-gray-800 pt-4">
+              <div>
+                <span class="text-accent text-sm font-bold tracking-widest mb-1 block">{project.id} / {project.category}</span>
+                <h3 class="text-4xl md:text-5xl font-bold mb-2 group-hover:text-accent transition-colors">{project.title}</h3>
+                <p class="text-gray-400 text-sm md:text-base max-w-sm font-light">{project.description}</p>
+              </div>
+              <div class="hidden md:block text-right">
+                <p class="text-xs text-gray-500 font-mono border border-gray-800 px-2 py-1 rounded inline-block">{project.tech}</p>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="py-24 border-y border-gray-900 overflow-hidden bg-card">
+      <div class="px-6 mb-12">
+        <span class="text-accent font-bold tracking-widest">MY TOOLKIT</span>
+      </div>
+      <div class="flex flex-col">
+        {skills.map((skill) => (
+          <div class="group border-b border-gray-800 last:border-b-0">
+            <h2 class="px-6 py-6 text-5xl md:text-8xl font-bold text-gray-700 hover:text-white hover:pl-12 transition-all duration-300 cursor-default select-none">
+              {skill}
+            </h2>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section id="about" class="px-6 py-32 flex flex-col md:flex-row gap-16">
+      <div class="md:w-1/3">
+        <h2 class="text-5xl font-bold text-accent mb-6 leading-none">MANDATORY<br>MAKER BIO</h2>
+      </div>
+      <div class="md:w-2/3">
+        <p class="text-xl md:text-2xl leading-relaxed text-gray-300 font-light">
+          <span class="text-white font-bold">Le design dépend des contraintes.</span><br><br>
+          Mon parcours n'est pas linéaire. Je passe mes nuits à modéliser des pièces sur <span class="text-accent">Fusion 360</span> pour modifier des consoles, et mes journées à créer des <span class="text-accent">Design Systems</span> sur Figma. Cette mentalité d'ingénieur créatif me permet de livrer des interfaces qui ne sont pas juste belles, mais fonctionnelles et réalisables.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact" class="px-6 py-24 bg-accent text-dark mt-12">
+    <div class="flex flex-col items-start">
+      <h2 class="text-6xl md:text-[10rem] font-bold leading-none mb-12 tracking-tighter">
+        LET'S BUILD IT
+      </h2>
+      <div class="flex flex-col md:flex-row gap-8 text-xl font-bold">
+        <a href={`mailto:${personalInfo.email}`} class="border-b-2 border-dark pb-1 hover:text-white hover:border-white transition-colors">
+          EMAIL ME
+        </a>
+        <a href={personalInfo.linkedin} target="_blank" class="border-b-2 border-dark pb-1 hover:text-white hover:border-white transition-colors">
+          LINKEDIN
+        </a>
+        <a href="#" class="border-b-2 border-dark pb-1 hover:text-white hover:border-white transition-colors">
+          DOWNLOAD CV
+        </a>
+      </div>
+      <div class="mt-24 w-full flex justify-between text-sm font-bold opacity-60">
+        <span>© 2026 {personalInfo.name}</span>
+        <span>BASED IN FRANCE</span>
+      </div>
+    </div>
+  </footer>
+</Layout>
